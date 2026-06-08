@@ -43,7 +43,7 @@ export default function ContactPage() {
                   </div>
                   <div className="space-y-2 sm:col-span-2">
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" placeholder="+63 912 345 6789" />
+                    <Input id="phone" type="tel" placeholder="" />
                   </div>
                   <div className="space-y-2 sm:col-span-2">
                     <Label htmlFor="message">Your Message</Label>
