@@ -16,7 +16,7 @@ export function Logo({ className, variant = "default" }: { className?: string; v
         width={200}
         height={200}
         className="object-contain"
-        data-ai-hint="medical logo teal blue"
+        data-ai-hint="teal square"
       />
     </div>
   )
