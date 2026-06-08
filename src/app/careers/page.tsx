@@ -16,21 +16,21 @@ import { Briefcase, MapPin, Clock, Upload, GraduationCap, Laptop } from "lucide-
 const jobs = [
   { 
     title: "Biomedical Technician", 
-    location: "Rizal / Manila", 
+    location: "Binangonan, Rizal", 
     type: "Full-Time", 
     summary: "Responsible for maintenance and calibration of hospital equipment.",
     qualifications: "BS Biomedical Engineering or equivalent." 
   },
   { 
     title: "Sales Representative", 
-    location: "Nationwide", 
+    location: "Binangonan, Rizal", 
     type: "Full-Time", 
     summary: "Grow our network of partner hospitals and clinics.",
     qualifications: "Experience in medical sales preferred." 
   },
   { 
     title: "Product Specialist", 
-    location: "Rizal", 
+    location: "Binangonan, Rizal", 
     type: "Full-Time", 
     summary: "Provide clinical training for lab and imaging equipment.",
     qualifications: "Medical background (Nurse/MedTech) is an advantage." 
