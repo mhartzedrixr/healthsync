@@ -1,13 +1,33 @@
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
-import { CheckCircle2, Target, Eye, Heart, Shield, Lightbulb, UserCheck, Star } from "lucide-react"
+import { CheckCircle2, Target, Eye, Heart, Shield, Lightbulb, Star, Zap } from "lucide-react"
 
 const values = [
-  { icon: Shield, title: "Integrity", desc: "We uphold the highest ethical standards in all our medical dealings." },
-  { icon: Star, title: "Excellence", desc: "Striving for superior quality in every product and clinical service." },
-  { icon: Lightbulb, title: "Innovation", desc: "Constantly seeking better healthcare technologies for our clients." },
-  { icon: Heart, title: "Commitment", desc: "Dedicated to the long-term success of healthcare providers." },
-  { icon: UserCheck, title: "Customer Focus", desc: "Prioritizing the needs of clinics, hospitals, and medical staff." }
+  { 
+    icon: Shield, 
+    title: "HONORABILITY", 
+    desc: "Conducting business with integrity, honesty, and ethical principles." 
+  },
+  { 
+    icon: Star, 
+    title: "SERVICE EXCELLENCE", 
+    desc: "Striving for excellence in service to healthcare professionals and institutions." 
+  },
+  { 
+    icon: Lightbulb, 
+    title: "MINDFUL INNOVATION", 
+    desc: "Embracing continuous improvement and innovative solutions." 
+  },
+  { 
+    icon: Zap, 
+    title: "EFFICIENCY", 
+    desc: "Operating with efficiency to streamline the procurement process." 
+  },
+  { 
+    icon: Heart, 
+    title: "SATISFACTION", 
+    desc: "Prioritizing customer satisfaction through quality products and service." 
+  }
 ]
 
 export default function AboutPage() {
