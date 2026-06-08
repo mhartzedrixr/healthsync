@@ -4,7 +4,7 @@ import { Quote, Landmark, Building2, Globe } from "lucide-react"
 
 const categories = [
   { title: "Government Hospitals", icon: Landmark, count: "6" },
-  { title: "Private Medical Centers", icon: Building2, count: "120+" },
+  { title: "Private Medical Centers", icon: Building2, count: "7" },
   { title: "Clinical Laboratories", icon: Globe, count: "200+" }
 ]
 
