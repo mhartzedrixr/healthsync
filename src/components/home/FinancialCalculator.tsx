@@ -17,7 +17,7 @@ export function FinancialCalculator() {
     <section className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <h2 className="text-3xl font-headline font-bold text-secondary mb-4">Financial Flexibility for Your Institution</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               We offer affordable monthly payments and business-friendly financing to help you upgrade your medical hardware without the heavy upfront costs.
@@ -25,7 +25,7 @@ export function FinancialCalculator() {
           </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
-            <Card className="shadow-lg border-none">
+            <Card className="shadow-lg border-none animate-in slide-in-from-left-8 duration-700 delay-200 fill-mode-both">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   Plan Estimator
@@ -37,7 +37,7 @@ export function FinancialCalculator() {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <Label className="text-base font-semibold">Equipment Value (₱)</Label>
-                    <span className="text-lg font-bold text-primary">₱{amount[0].toLocaleString()}</span>
+                    <span className="text-lg font-bold text-primary transition-all duration-300">₱{amount[0].toLocaleString()}</span>
                   </div>
                   <Slider
                     value={amount}
@@ -51,7 +51,7 @@ export function FinancialCalculator() {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <Label className="text-base font-semibold">Payment Period (Months)</Label>
-                    <span className="text-lg font-bold text-primary">{months[0]} Months</span>
+                    <span className="text-lg font-bold text-primary transition-all duration-300">{months[0]} Months</span>
                   </div>
                   <Slider
                     value={months}
@@ -65,13 +65,13 @@ export function FinancialCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-secondary text-white shadow-2xl border-none flex flex-col justify-between">
+            <Card className="bg-secondary text-white shadow-2xl border-none flex flex-col justify-between animate-in slide-in-from-right-8 duration-700 delay-400 fill-mode-both">
               <CardHeader>
                 <CardTitle className="text-white">Estimated Monthly Payment</CardTitle>
                 <CardDescription className="text-secondary-foreground/70">Ownership after completion of terms.</CardDescription>
               </CardHeader>
               <CardContent className="flex-grow flex flex-col justify-center items-center py-8">
-                <div className="text-center">
+                <div className="text-center animate-in zoom-in-95 duration-500 delay-700 fill-mode-both">
                   <span className="text-5xl font-headline font-bold text-primary">
                     ₱{Math.round(monthlyPayment).toLocaleString()}
                   </span>
@@ -84,8 +84,8 @@ export function FinancialCalculator() {
                     "Ownership after completion",
                     "Full technical support included",
                     "Flexible repayment options"
-                  ].map((benefit) => (
-                    <div key={benefit} className="flex items-center gap-3 text-sm">
+                  ].map((benefit, i) => (
+                    <div key={benefit} className="flex items-center gap-3 text-sm animate-in fade-in slide-in-from-left-4 duration-500" style={{ animationDelay: `${900 + (i * 100)}ms` }}>
                       <div className="bg-primary/20 p-1 rounded-full">
                         <Check className="h-4 w-4 text-primary" />
                       </div>
@@ -95,7 +95,7 @@ export function FinancialCalculator() {
                 </div>
               </CardContent>
               <div className="p-6">
-                <Button className="w-full bg-white text-secondary hover:bg-white/90" size="lg">
+                <Button className="w-full bg-white text-secondary hover:bg-white/90 h-12 font-bold transition-all hover:scale-[1.02]" size="lg">
                   Request Formal Proposal
                 </Button>
               </div>
