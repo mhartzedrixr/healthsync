@@ -69,7 +69,7 @@ export default function ContactPage() {
                     <div>
                       <h4 className="font-bold text-secondary mb-1">Office Address</h4>
                       <p className="text-sm text-muted-foreground leading-relaxed">
-                        Darangan Bridge, Binangonan, 1940 Rizal, Philippines
+                        Upper Kasinay St., Darangan, Binangonan, Rizal, Philippines
                       </p>
                     </div>
                   </CardContent>
@@ -82,7 +82,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-secondary mb-1">Call Us</h4>
-                      <p className="text-sm text-muted-foreground">+63 (000) 000-0000</p>
+                      <p className="text-sm text-muted-foreground">+63 915 392 5794</p>
                     </div>
                   </CardContent>
                 </Card>

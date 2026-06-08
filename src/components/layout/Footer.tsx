@@ -71,12 +71,12 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary shrink-0" />
                 <span className="text-sm text-secondary-foreground/70">
-                  Darangan Bridge, Binangonan, 1940 Rizal, Philippines
+                  Upper Kasinay St., Darangan, Binangonan, Rizal, Philippines
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-primary shrink-0" />
-                <span className="text-sm text-secondary-foreground/70">+63 (000) 000-0000</span>
+                <span className="text-sm text-secondary-foreground/70">+63 915 392 5794</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-primary shrink-0" />
