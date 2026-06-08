@@ -51,7 +51,7 @@ export default function ContactPage() {
                   </div>
                   <div className="sm:col-span-2">
                     <Button className="w-full h-12 text-base font-bold uppercase tracking-widest">
-                      Request Quote
+                      SUBMIT
                     </Button>
                   </div>
                 </form>
