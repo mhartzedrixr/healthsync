@@ -13,18 +13,6 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="flex flex-col">
-      {/* Hero Header */}
-      <section className="bg-secondary text-white py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-headline font-bold mb-6">Our Mission to Heal</h1>
-            <p className="text-xl text-secondary-foreground/70 leading-relaxed">
-              Discover why Healthsync Medical Solutions Corporation is the preferred partner for healthcare excellence in the Philippines.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Profile Section */}
       <section className="py-24">
         <div className="container mx-auto px-4">
