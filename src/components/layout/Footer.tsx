@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Activity, Facebook, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react"
+import { Facebook, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react"
+import { Logo } from "./Logo"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -10,9 +11,7 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-2">
-              <div className="bg-primary p-2 rounded-lg shrink-0">
-                <Activity className="h-5 w-5 md:h-6 md:w-6 text-primary-foreground" />
-              </div>
+              <Logo className="h-8 w-8 md:h-10 md:w-10 shrink-0" variant="light" />
               <span className="font-headline text-lg font-bold tracking-tight text-white leading-tight">
                 Healthsync Medical
               </span>

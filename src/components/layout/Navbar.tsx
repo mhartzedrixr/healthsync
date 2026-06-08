@@ -3,8 +3,9 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X, Activity } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Logo } from "./Logo"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -37,10 +38,8 @@ export function Navbar() {
       <nav className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 lg:px-8" aria-label="Global">
         <div className="flex flex-1 items-center">
           <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2 group">
-            <div className="bg-primary p-2 rounded-lg shrink-0 transition-transform group-hover:scale-105">
-              <Activity className="h-5 w-5 md:h-6 md:w-6 text-primary-foreground" />
-            </div>
-            <span className="font-headline text-base md:text-lg font-bold tracking-tight text-secondary leading-tight max-w-[180px] sm:max-w-none">
+            <Logo className="h-9 w-9 md:h-11 md:w-11 shrink-0 transition-transform group-hover:scale-105" />
+            <span className="font-headline text-base md:text-lg font-bold tracking-tight text-secondary leading-tight max-w-[200px] sm:max-w-none">
               Healthsync Medical <span className="hidden sm:inline">Solutions Corporation</span>
             </span>
           </Link>
@@ -93,9 +92,7 @@ export function Navbar() {
       )}>
         <div className="flex items-center justify-between h-16 px-4 border-b">
           <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
-            <div className="bg-primary p-2 rounded-lg shrink-0">
-              <Activity className="h-5 w-5 text-primary-foreground" />
-            </div>
+            <Logo className="h-8 w-8" />
             <span className="font-headline text-base font-bold text-secondary">
               Healthsync Medical
             </span>
