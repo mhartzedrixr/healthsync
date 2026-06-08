@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Twitter } from "lucide-react"
+import { Phone, Mail, MapPin, Clock } from "lucide-react"
 
 export default function ContactPage() {
   return (

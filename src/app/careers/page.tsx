@@ -11,7 +11,7 @@ import {
   SelectValue 
 } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { Briefcase, MapPin, Clock, Upload, GraduationCap, Laptop } from "lucide-react"
+import { Briefcase, MapPin, Clock, Upload, GraduationCap } from "lucide-react"
 
 const jobs = [
   { 
@@ -104,16 +104,16 @@ export default function CareersPage() {
                   <form className="space-y-5">
                     <div className="space-y-2">
                       <Label htmlFor="fullname">Full Name</Label>
-                      <Input id="fullname" placeholder="Juan Dela Cruz" />
+                      <Input id="fullname" placeholder="" />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="career-email">Email</Label>
-                        <Input id="career-email" type="email" placeholder="juan@email.com" />
+                        <Input id="career-email" type="email" placeholder="" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="career-phone">Phone</Label>
-                        <Input id="career-phone" placeholder="0917-xxx-xxxx" />
+                        <Input id="career-phone" placeholder="" />
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -134,7 +134,6 @@ export default function CareersPage() {
                     <div className="space-y-2">
                       <Label htmlFor="resume">Upload CV / Resume (PDF)</Label>
                       <div className="border-2 border-dashed rounded-xl p-8 text-center bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer group">
-                        <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2 group-hover:text-primary transition-colors" />
                         <p className="text-xs text-muted-foreground">Click or drag and drop your file here</p>
                         <input type="file" id="resume" className="hidden" accept=".pdf,.doc,.docx" />
                       </div>
