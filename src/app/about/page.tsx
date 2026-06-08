@@ -70,7 +70,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl font-headline font-bold mb-4">Our Mission</h2>
               <p className="text-lg text-primary-foreground/80 leading-relaxed">
-                "To deliver reliable, high-quality, and cost-effective medical products and services while building long-term partnerships with healthcare institutions."
+                "To provide top-grade medical equipment and supplies with integrity and excellence, guided by faith in God and a commitment to serve with honesty, reliability, and care."
               </p>
             </div>
           </div>
