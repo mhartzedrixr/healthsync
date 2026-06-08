@@ -10,8 +10,8 @@ interface LogoProps {
 
 export function Logo({ className, variant = "default" }: LogoProps) {
   // Use HSL values from globals.css
-  const teal = variant === "light" ? "white" : "hsl(180 100% 23.7%)"
-  const darkBlue = variant === "light" ? "hsl(171 43% 60%)" : "hsl(241 80% 21%)"
+  const teal = variant === "light" ? "white" : "hsl(180 58% 27%)"
+  const darkBlue = variant === "light" ? "hsl(171 43% 60%)" : "hsl(240 67% 12%)"
 
   return (
     <div className={cn("relative flex items-center justify-center", className)}>
@@ -25,18 +25,27 @@ export function Logo({ className, variant = "default" }: LogoProps) {
         <rect 
           x="8" 
           y="8" 
-          width="16" 
-          height="16" 
-          rx="2" 
+          width="18" 
+          height="18" 
+          rx="4" 
           fill={darkBlue} 
         />
         
-        {/* Teal Frame Shape */}
+        {/* Top-Right Teal Segment */}
         <path
-          d="M38 16H16V84H84V38"
+          d="M36 17H83V45"
           stroke={teal}
-          strokeWidth="16"
-          strokeLinecap="round"
+          strokeWidth="18"
+          strokeLinecap="butt"
+          strokeLinejoin="round"
+        />
+        
+        {/* Bottom-Left Teal Segment */}
+        <path
+          d="M17 36V83H83V55"
+          stroke={teal}
+          strokeWidth="18"
+          strokeLinecap="butt"
           strokeLinejoin="round"
         />
       </svg>
