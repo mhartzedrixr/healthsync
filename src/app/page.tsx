@@ -126,7 +126,7 @@ export default function Home() {
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 h-14 px-10 text-lg font-bold">
                 Get Started Today
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 h-14 px-10 text-lg font-bold">
+              <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 h-14 px-10 text-lg font-bold hover:text-white">
                 Contact Sales
               </Button>
             </div>
