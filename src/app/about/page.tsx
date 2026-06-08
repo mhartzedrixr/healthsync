@@ -34,7 +34,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col">
       {/* Profile Section */}
-      <section className="py-24 bg-secondary text-white">
+      <section className="py-24 bg-secondary text-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6 animate-in slide-in-from-left-12 duration-1000 fill-mode-both">
@@ -50,7 +50,7 @@ export default function AboutPage() {
                     "We prioritize customer satisfaction, ensuring seamless access to essential resources for healthcare delivery.",
                     "Choose us for dependable service, top-notch products, and a commitment to advancing healthcare standards."
                   ].map((text, i) => (
-                    <li key={i} className="flex gap-3 animate-in fade-in slide-in-from-left-4 duration-500" style={{ animationDelay: `${300 + (i * 100)}ms` }}>
+                    <li key={i} className="flex gap-3 animate-in fade-in slide-in-from-left-4 duration-500" style={{ animationDelay: `${400 + (i * 150)}ms` }}>
                       <CheckCircle2 className="h-6 w-6 text-accent shrink-0 mt-1" />
                       <span>{text}</span>
                     </li>
@@ -106,7 +106,7 @@ export default function AboutPage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {values.map((v, i) => (
-              <Card key={i} className="text-center hover:shadow-xl transition-all duration-300 border-none bg-muted/30 group animate-in zoom-in-95 duration-700 fill-mode-both" style={{ animationDelay: `${i * 100}ms` }}>
+              <Card key={i} className="text-center hover:shadow-xl transition-all duration-300 border-none bg-muted/30 group animate-in zoom-in-95 duration-700 fill-mode-both" style={{ animationDelay: `${i * 150}ms` }}>
                 <CardContent className="p-8">
                   <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center text-primary mx-auto mb-4 transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
                     <v.icon className="h-6 w-6" />

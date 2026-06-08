@@ -46,14 +46,15 @@ const jobs = [
 
 export default function CareersPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-muted/20">
-      <section className="bg-secondary text-white py-24 text-center">
-        <div className="container mx-auto px-4">
+    <div className="flex flex-col min-h-screen bg-muted/20 overflow-hidden">
+      <section className="bg-secondary text-white py-24 text-center relative">
+        <div className="container mx-auto px-4 relative z-10 animate-in fade-in slide-in-from-top-8 duration-1000">
           <h1 className="text-4xl md:text-5xl font-headline font-bold mb-6">Join the HealthSync Team</h1>
           <p className="text-xl text-secondary-foreground/70 max-w-2xl mx-auto">
             Build your career with a company dedicated to medical excellence and clinical innovation.
           </p>
         </div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-20 -mt-20 blur-3xl" />
       </section>
 
       <section className="py-24">
@@ -61,15 +62,15 @@ export default function CareersPage() {
           <div className="grid lg:grid-cols-[1.5fr,1fr] gap-12">
             {/* Job Listings */}
             <div className="space-y-6">
-              <h2 className="text-2xl font-headline font-bold text-secondary flex items-center gap-2">
+              <h2 className="text-2xl font-headline font-bold text-secondary flex items-center gap-2 animate-in fade-in slide-in-from-left-4 duration-700">
                 <Briefcase className="h-6 w-6 text-primary" /> Open Positions
               </h2>
               <div className="grid gap-4">
                 {jobs.map((job, i) => (
-                  <Card key={i} className="hover:border-primary/50 transition-all shadow-sm">
+                  <Card key={i} className="hover:border-primary/50 transition-all shadow-sm group animate-in fade-in slide-in-from-left-8 duration-700 fill-mode-both" style={{ animationDelay: `${i * 150}ms` }}>
                     <CardHeader className="p-6">
                       <div className="flex justify-between items-start mb-2">
-                        <CardTitle className="text-xl font-bold">{job.title}</CardTitle>
+                        <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">{job.title}</CardTitle>
                         <Badge variant="secondary" className="uppercase text-[10px] tracking-widest">{job.type}</Badge>
                       </div>
                       <div className="flex gap-4 text-sm text-muted-foreground mb-4">
@@ -86,7 +87,7 @@ export default function CareersPage() {
                       </div>
                     </CardHeader>
                     <div className="px-6 pb-6">
-                      <Button variant="outline" className="w-full sm:w-auto px-10 font-bold uppercase tracking-widest text-xs">View Details</Button>
+                      <Button variant="outline" className="w-full sm:w-auto px-10 font-bold uppercase tracking-widest text-xs transition-all hover:bg-primary hover:text-white">View Details</Button>
                     </div>
                   </Card>
                 ))}
@@ -94,32 +95,35 @@ export default function CareersPage() {
             </div>
 
             {/* Application Form */}
-            <div className="space-y-8">
-              <Card className="shadow-xl border-none sticky top-24">
-                <CardHeader className="bg-primary p-8 text-white rounded-t-xl">
-                  <CardTitle className="text-2xl">Apply Now</CardTitle>
-                  <CardDescription className="text-primary-foreground/70">Submit your application to our HR department.</CardDescription>
+            <div className="space-y-8 animate-in fade-in slide-in-from-right-8 duration-1000">
+              <Card className="shadow-xl border-none sticky top-24 overflow-hidden">
+                <CardHeader className="bg-primary p-8 text-white rounded-t-xl relative">
+                  <div className="relative z-10">
+                    <CardTitle className="text-2xl">Apply Now</CardTitle>
+                    <CardDescription className="text-primary-foreground/70">Submit your application to our HR department.</CardDescription>
+                  </div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
                 </CardHeader>
                 <CardContent className="p-8">
                   <form className="space-y-5">
                     <div className="space-y-2">
                       <Label htmlFor="fullname">Full Name</Label>
-                      <Input id="fullname" placeholder="" />
+                      <Input id="fullname" placeholder="John Doe" className="focus:border-primary border-2" />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="career-email">Email</Label>
-                        <Input id="career-email" type="email" placeholder="" />
+                        <Input id="career-email" type="email" placeholder="john@example.com" className="focus:border-primary border-2" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="career-phone">Phone</Label>
-                        <Input id="career-phone" placeholder="" />
+                        <Input id="career-phone" placeholder="+63" className="focus:border-primary border-2" />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label>Desired Position</Label>
                       <Select>
-                        <SelectTrigger>
+                        <SelectTrigger className="focus:border-primary border-2">
                           <SelectValue placeholder="Select a job" />
                         </SelectTrigger>
                         <SelectContent>
@@ -133,16 +137,17 @@ export default function CareersPage() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="resume">Upload CV / Resume (PDF)</Label>
-                      <div className="border-2 border-dashed rounded-xl p-8 text-center bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer group">
-                        <p className="text-xs text-muted-foreground">Click or drag and drop your file here</p>
+                      <div className="border-2 border-dashed rounded-xl p-8 text-center bg-muted/30 hover:bg-muted/50 transition-all cursor-pointer group hover:border-primary/50">
+                        <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2 group-hover:text-primary transition-colors" />
+                        <p className="text-xs text-muted-foreground group-hover:text-secondary">Click or drag and drop your file here</p>
                         <input type="file" id="resume" className="hidden" accept=".pdf,.doc,.docx" />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="career-msg">Message (Optional)</Label>
-                      <Textarea id="career-msg" placeholder="Tell us about yourself..." />
+                      <Textarea id="career-msg" placeholder="Tell us about yourself..." className="focus:border-primary border-2 min-h-[100px]" />
                     </div>
-                    <Button className="w-full h-12 font-bold uppercase tracking-widest mt-4">Submit Application</Button>
+                    <Button className="w-full h-12 font-bold uppercase tracking-widest mt-4 transition-transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20">Submit Application</Button>
                   </form>
                 </CardContent>
               </Card>

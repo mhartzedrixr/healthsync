@@ -55,9 +55,9 @@ const keyPartners = [
 
 export default function ClientsPage() {
   return (
-    <div className="flex flex-col">
-      <section className="bg-secondary text-white py-24 text-center">
-        <div className="container mx-auto px-4">
+    <div className="flex flex-col overflow-hidden">
+      <section className="bg-secondary text-white py-24 text-center relative">
+        <div className="container mx-auto px-4 relative z-10 animate-in fade-in slide-in-from-top-8 duration-1000">
           <h1 className="text-4xl md:text-5xl font-headline font-bold mb-6">Our Partners in Care</h1>
           <p className="text-xl text-secondary-foreground/70 max-w-2xl mx-auto">
             We are proud to partner with trusted healthcare institutions dedicated to providing quality care and improving lives.
@@ -66,12 +66,12 @@ export default function ClientsPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white relative">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-20">
             {stats.map((c, i) => (
-              <Card key={i} className="text-center p-8 border-none shadow-lg bg-muted/30">
-                <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center text-primary mx-auto mb-6">
+              <Card key={i} className="text-center p-8 border-none shadow-lg bg-muted/30 animate-in zoom-in-95 duration-700 fill-mode-both" style={{ animationDelay: `${i * 200}ms` }}>
+                <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center text-primary mx-auto mb-6 transition-transform hover:scale-110">
                   <c.icon className="h-8 w-8" />
                 </div>
                 <h3 className="text-4xl font-headline font-extrabold text-secondary mb-2">{c.count}</h3>
@@ -81,26 +81,26 @@ export default function ClientsPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <div className="space-y-6">
+            <div className="space-y-6 animate-in slide-in-from-left-8 duration-1000 fill-mode-both">
               <h3 className="text-2xl font-headline font-bold text-secondary flex items-center gap-2">
                 <Landmark className="text-primary h-6 w-6" /> Government Institutions
               </h3>
               <ul className="space-y-4">
                 {govHospitals.map((h, i) => (
-                  <li key={i} className="flex items-start gap-3 p-4 bg-muted/20 rounded-xl border border-border/50">
+                  <li key={i} className="flex items-start gap-3 p-4 bg-muted/20 rounded-xl border border-border/50 transition-all hover:bg-white hover:shadow-md hover:translate-x-2 animate-in fade-in slide-in-from-left-4 duration-500 fill-mode-both" style={{ animationDelay: `${i * 100}ms` }}>
                     <div className="h-2 w-2 rounded-full bg-primary mt-2 shrink-0" />
                     <span className="text-secondary font-medium">{h}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-6 animate-in slide-in-from-right-8 duration-1000 fill-mode-both">
               <h3 className="text-2xl font-headline font-bold text-secondary flex items-center gap-2">
                 <Building2 className="text-primary h-6 w-6" /> Private Hospitals
               </h3>
               <ul className="space-y-4">
                 {privateHospitals.map((h, i) => (
-                  <li key={i} className="flex items-start gap-3 p-4 bg-muted/20 rounded-xl border border-border/50">
+                  <li key={i} className="flex items-start gap-3 p-4 bg-muted/20 rounded-xl border border-border/50 transition-all hover:bg-white hover:shadow-md hover:translate-x-2 animate-in fade-in slide-in-from-right-4 duration-500 fill-mode-both" style={{ animationDelay: `${i * 100}ms` }}>
                     <div className="h-2 w-2 rounded-full bg-accent mt-2 shrink-0" />
                     <span className="text-secondary font-medium">{h}</span>
                   </li>
@@ -116,8 +116,8 @@ export default function ClientsPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             {characteristics.map((char, i) => (
-              <div key={i} className="text-center space-y-4 p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-                <div className="bg-accent w-12 h-12 rounded-full flex items-center justify-center text-primary mx-auto">
+              <div key={i} className="text-center space-y-4 p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both" style={{ animationDelay: `${i * 200}ms` }}>
+                <div className="bg-accent w-12 h-12 rounded-full flex items-center justify-center text-primary mx-auto transition-transform hover:rotate-12">
                   <char.icon className="h-6 w-6" />
                 </div>
                 <h4 className="text-xl font-bold">{char.title}</h4>
@@ -131,28 +131,28 @@ export default function ClientsPage() {
       {/* Key Partners Grid */}
       <section className="py-24 bg-muted/20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-in fade-in duration-1000">
             <h2 className="text-3xl font-headline font-bold text-secondary mb-4 uppercase tracking-tight">KEY CLIENT / PARTNERS</h2>
             <p className="text-muted-foreground">Strategic collaborations driving healthcare forward.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {keyPartners.map((partner, i) => (
-              <Card key={i} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border-none group overflow-hidden">
+              <Card key={i} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border-none group overflow-hidden animate-in zoom-in-95 duration-700 fill-mode-both" style={{ animationDelay: `${i * 150}ms` }}>
                 <div className="relative w-full h-48 mb-6 rounded-xl overflow-hidden">
                   <Image 
                     src={`https://picsum.photos/seed/${partner.seed}/600/400`} 
                     alt={partner.name} 
                     fill 
-                    className="object-cover group-hover:scale-110 transition-transform duration-500" 
+                    className="object-cover group-hover:scale-110 transition-transform duration-700" 
                     data-ai-hint="medical partner"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                  <div className="absolute bottom-4 left-4 right-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                     <h4 className="text-white font-bold text-sm leading-tight uppercase tracking-wider">{partner.name}</h4>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest">
-                  <Users className="h-4 w-4" /> Strategic Partner
+                  <Users className="h-4 w-4 transition-transform group-hover:scale-125" /> Strategic Partner
                 </div>
               </Card>
             ))}
