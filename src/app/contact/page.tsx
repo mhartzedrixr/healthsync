@@ -31,15 +31,15 @@ export default function ContactPage() {
                 <form className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="first-name">First Name</Label>
-                    <Input id="first-name" placeholder="John" />
+                    <Input id="first-name" placeholder="" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="last-name">Last Name</Label>
-                    <Input id="last-name" placeholder="Doe" />
+                    <Input id="last-name" placeholder="" />
                   </div>
                   <div className="space-y-2 sm:col-span-2">
                     <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" placeholder="john@example.com" />
+                    <Input id="email" type="email" placeholder="" />
                   </div>
                   <div className="space-y-2 sm:col-span-2">
                     <Label htmlFor="phone">Phone Number</Label>
