@@ -47,6 +47,12 @@
       "description": "Healthcare institution logo 2",
       "imageUrl": "https://picsum.photos/seed/client2/200/100",
       "imageHint": "clinic logo"
+    },
+    {
+      "id": "app-logo",
+      "description": "HealthSync Medical Solutions Corporation Logo",
+      "imageUrl": "https://picsum.photos/seed/healthsync-logo/200/200",
+      "imageHint": "medical logo"
     }
   ]
 }
