@@ -36,7 +36,7 @@ export default function AboutPage() {
                   Healthsync Medical Equipment and Supplies Trading is a trusted partner in the world of medical equipment supply.
                 </p>
                 <p>
-                  Established with a vision to revolutionize the local healthcare landscape, we specialize in high-end laboratory gear, surgical equipment, and essential medical consumables that meet international safety standards.
+                  ✔ With a focus on quality and reliability, we are dedicated to providing healthcare professionals and institutions with cutting-edge solutions.
                 </p>
               </div>
             </div>
