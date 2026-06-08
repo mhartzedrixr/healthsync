@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
-import { Quote, Landmark, Building2, Globe, Heart, ShieldCheck, Users } from "lucide-react"
+import { Landmark, Building2, Globe, Heart, ShieldCheck, Users } from "lucide-react"
 
 const stats = [
   { title: "Government Hospitals", icon: Landmark, count: "6" },
@@ -51,21 +51,6 @@ const keyPartners = [
   { name: "VICTORIA’S PHARMACEUTICAL PRODUCT DISTRIBUTION", seed: "p4" },
   { name: "3G MEDICAL ENTERPRISES", seed: "p5" },
   { name: "BIOMEDICAL SERVICES", seed: "p6" }
-]
-
-const testimonials = [
-  {
-    name: "Dr. Maria Santos",
-    role: "Chief of Hospital",
-    text: "HealthSync provided a seamless transition when we upgraded our MRI systems. Their technical support is unmatched.",
-    institution: "St. Lukes Medical Center"
-  },
-  {
-    name: "Mark Villanueva",
-    role: "Laboratory Director",
-    text: "Reliable supplies and precision equipment. We've been partnering with them for over 5 years now with zero issues.",
-    institution: "General Hospital Rizal"
-  }
 ]
 
 export default function ClientsPage() {
@@ -169,31 +154,6 @@ export default function ClientsPage() {
                 <div className="flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest">
                   <Users className="h-4 w-4" /> Strategic Partner
                 </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-headline font-bold text-secondary mb-4">Client Feedback</h2>
-            <p className="text-muted-foreground">What healthcare leaders say about HealthSync.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            {testimonials.map((t, i) => (
-              <Card key={i} className="border-none shadow-xl bg-secondary text-white relative overflow-hidden">
-                <CardContent className="p-12">
-                  <Quote className="h-12 w-12 text-primary/30 absolute -top-4 -left-4" />
-                  <p className="text-lg italic leading-relaxed mb-8 relative z-10">"{t.text}"</p>
-                  <div>
-                    <h4 className="font-bold text-xl">{t.name}</h4>
-                    <p className="text-primary text-sm font-semibold">{t.role}</p>
-                    <p className="text-secondary-foreground/50 text-xs mt-1">{t.institution}</p>
-                  </div>
-                </CardContent>
               </Card>
             ))}
           </div>
