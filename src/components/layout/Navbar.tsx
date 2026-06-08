@@ -20,84 +20,111 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
   const pathname = usePathname()
 
+  // Prevent body scroll when mobile menu is open
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [mobileMenuOpen])
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
-      <nav className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8" aria-label="Global">
-        <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
-            <div className="bg-primary p-2 rounded-lg shrink-0">
-              <Activity className="h-6 w-6 text-primary-foreground" />
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <nav className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 lg:px-8" aria-label="Global">
+        <div className="flex flex-1 items-center">
+          <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2 group">
+            <div className="bg-primary p-2 rounded-lg shrink-0 transition-transform group-hover:scale-105">
+              <Activity className="h-5 w-5 md:h-6 md:w-6 text-primary-foreground" />
             </div>
-            <span className="font-headline text-lg font-bold tracking-tight text-secondary leading-tight max-w-[200px] sm:max-w-none">
-              Healthsync Medical Solutions Corporation
+            <span className="font-headline text-base md:text-lg font-bold tracking-tight text-secondary leading-tight max-w-[180px] sm:max-w-none">
+              Healthsync Medical <span className="hidden sm:inline">Solutions Corporation</span>
             </span>
           </Link>
         </div>
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-secondary"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Menu className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
-        <div className="hidden lg:flex lg:gap-x-8">
+
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex lg:gap-x-1 lg:items-center">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
               className={cn(
-                "text-sm font-semibold leading-6 transition-colors hover:text-primary",
-                pathname === item.href ? "text-primary" : "text-secondary/80"
+                "px-3 py-2 text-sm font-semibold rounded-md transition-colors",
+                pathname === item.href 
+                  ? "bg-primary/5 text-primary" 
+                  : "text-secondary/80 hover:bg-muted hover:text-primary"
               )}
             >
               {item.name}
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {/* Action buttons removed as requested */}
+
+        {/* Mobile menu trigger */}
+        <div className="flex lg:hidden">
+          <button
+            type="button"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-secondary hover:text-primary transition-colors"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <span className="sr-only">Open main menu</span>
+            <Menu className="h-6 w-6" aria-hidden="true" />
+          </button>
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu overlay */}
+      <div 
+        className={cn(
+          "fixed inset-0 z-50 lg:hidden transition-all duration-300",
+          mobileMenuOpen ? "visible bg-black/50" : "invisible bg-black/0"
+        )}
+        onClick={() => setMobileMenuOpen(false)}
+      />
+
+      {/* Mobile menu panel */}
       <div className={cn(
-        "fixed inset-0 z-50 lg:hidden transition-transform duration-300 ease-in-out bg-background",
+        "fixed inset-y-0 right-0 z-50 w-full max-w-sm lg:hidden transition-transform duration-300 ease-in-out bg-background shadow-2xl",
         mobileMenuOpen ? "translate-x-0" : "translate-x-full"
       )}>
-        <div className="flex items-center justify-between h-20 px-4">
+        <div className="flex items-center justify-between h-16 px-4 border-b">
           <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
             <div className="bg-primary p-2 rounded-lg shrink-0">
-              <Activity className="h-6 w-6 text-primary-foreground" />
+              <Activity className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="font-headline text-lg font-bold text-secondary leading-tight">
-              Healthsync Medical Solutions Corporation
+            <span className="font-headline text-base font-bold text-secondary">
+              Healthsync Medical
             </span>
           </Link>
           <button
             type="button"
-            className="-m-2.5 rounded-md p-2.5 text-secondary"
+            className="-m-2.5 rounded-md p-2.5 text-secondary hover:text-primary transition-colors"
             onClick={() => setMobileMenuOpen(false)}
           >
             <X className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="mt-6 flow-root px-4">
-          <div className="-my-6 divide-y divide-secondary/10">
-            <div className="space-y-2 py-6">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-secondary hover:bg-muted"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+        <div className="overflow-y-auto h-[calc(100vh-64px)] px-4 py-6">
+          <div className="space-y-2">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "block rounded-lg px-4 py-3 text-base font-semibold transition-colors",
+                  pathname === item.href 
+                    ? "bg-primary text-white" 
+                    : "text-secondary hover:bg-muted"
+                )}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
