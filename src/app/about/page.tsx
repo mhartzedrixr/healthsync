@@ -61,7 +61,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl font-headline font-bold mb-4">Our Vision</h2>
               <p className="text-lg text-primary-foreground/80 leading-relaxed">
-                "To become one of the leading providers of innovative healthcare and medical solutions that contribute to better patient care and healthcare excellence."
+                "To build a legacy faith, excellence, and service in medical equipment and supplies trading, guided by God's purpose while contributing to better healthcare for generations."
               </p>
             </div>
             <div className="bg-white/10 p-10 rounded-2xl backdrop-blur-sm border border-white/10">
