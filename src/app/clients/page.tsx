@@ -30,7 +30,7 @@ export default function ClientsPage() {
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-headline font-bold mb-6">Our Partners in Care</h1>
           <p className="text-xl text-secondary-foreground/70 max-w-2xl mx-auto">
-            Trusted by the Philippines' leading healthcare institutions, government agencies, and clinical laboratories.
+            We are proud to partner with trusted healthcare institutions dedicated to providing quality care and improving lives.
           </p>
         </div>
       </section>
