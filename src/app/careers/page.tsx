@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -11,7 +14,7 @@ import {
   SelectValue 
 } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { Briefcase, MapPin, Clock, Upload, GraduationCap } from "lucide-react"
+import { Briefcase, MapPin, Clock, Upload, GraduationCap, Loader2, AlertCircle, CheckCircle } from "lucide-react"
 
 const jobs = [
   { 
@@ -45,6 +48,78 @@ const jobs = [
 ]
 
 export default function CareersPage() {
+  const [fullname, setFullname] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [position, setPosition] = useState("")
+  const [message, setMessage] = useState("")
+  const [resumeName, setResumeName] = useState("")
+  const [submitting, setSubmitting] = useState(false)
+  const [successMsg, setSuccessMsg] = useState("")
+  const [errorMsg, setErrorMsg] = useState("")
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setResumeName(e.target.files[0].name)
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!fullname || !email || !phone || !position) {
+      setErrorMsg("PLEASE FILL IN ALL REQUIRED FIELDS (Name, Email, Phone, Position).")
+      setSuccessMsg("")
+      return
+    }
+
+    setSubmitting(true)
+    setErrorMsg("")
+    setSuccessMsg("")
+
+    try {
+      const fullMessage = `Desired Position: ${position}\nUploaded Resume: ${resumeName || "Not Provided"}\n\nCover Letter / Message:\n${message || "No cover letter provided."}`
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: fullname,
+          email,
+          phone,
+          department: "hr",
+          message: fullMessage
+        })
+      })
+
+      const result = await res.json()
+
+      if (!res.ok) {
+        throw new Error(result.error || "Failed to submit application.")
+      }
+
+      if (result.mocked) {
+        setSuccessMsg(`Application simulated successfully! Saved to inquiries.json (routed to HR: jewellvictorio@gmail.com).`)
+      } else {
+        setSuccessMsg(`Your application has been successfully sent to the HR department!`)
+      }
+
+      // Reset form fields
+      setFullname("")
+      setEmail("")
+      setPhone("")
+      setPosition("")
+      setMessage("")
+      setResumeName("")
+    } catch (err: any) {
+      setErrorMsg(err.message || "Failed to send application. Please try again.")
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-muted/20 overflow-hidden">
       <section className="bg-secondary text-white py-24 text-center relative">
@@ -87,7 +162,17 @@ export default function CareersPage() {
                       </div>
                     </CardHeader>
                     <div className="px-6 pb-6">
-                      <Button variant="outline" className="w-full sm:w-auto px-10 font-bold uppercase tracking-widest text-xs transition-all hover:bg-primary hover:text-white">View Details</Button>
+                      <Button 
+                        variant="outline" 
+                        className="w-full sm:w-auto px-10 font-bold uppercase tracking-widest text-xs transition-all hover:bg-primary hover:text-white"
+                        onClick={() => {
+                          setPosition(job.title.toLowerCase().replace(' ', '-'))
+                          // Scroll application form into view
+                          document.getElementById("apply-form-card")?.scrollIntoView({ behavior: "smooth" })
+                        }}
+                      >
+                        Apply For This Position
+                      </Button>
                     </div>
                   </Card>
                 ))}
@@ -95,7 +180,7 @@ export default function CareersPage() {
             </div>
 
             {/* Application Form */}
-            <div className="space-y-8 animate-in fade-in slide-in-from-right-8 duration-1000">
+            <div id="apply-form-card" className="space-y-8 animate-in fade-in slide-in-from-right-8 duration-1000">
               <Card className="shadow-xl border-none sticky top-24 overflow-hidden">
                 <CardHeader className="bg-primary p-8 text-white rounded-t-xl relative">
                   <div className="relative z-10">
@@ -104,27 +189,49 @@ export default function CareersPage() {
                   </div>
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
                 </CardHeader>
-                <CardContent className="p-8">
-                  <form className="space-y-5">
+                <CardContent className="p-8 bg-white">
+                  <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="space-y-2">
                       <Label htmlFor="fullname">Full Name</Label>
-                      <Input id="fullname" placeholder="John Doe" className="focus:border-primary border-2" />
+                      <Input 
+                        id="fullname" 
+                        placeholder="John Doe" 
+                        className="focus:border-primary border-2 h-11" 
+                        value={fullname}
+                        onChange={(e) => setFullname(e.target.value)}
+                        disabled={submitting}
+                      />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="career-email">Email</Label>
-                        <Input id="career-email" type="email" placeholder="john@example.com" className="focus:border-primary border-2" />
+                        <Input 
+                          id="career-email" 
+                          type="email" 
+                          placeholder="john@example.com" 
+                          className="focus:border-primary border-2 h-11" 
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          disabled={submitting}
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="career-phone">Phone</Label>
-                        <Input id="career-phone" placeholder="+63" className="focus:border-primary border-2" />
+                        <Input 
+                          id="career-phone" 
+                          placeholder="+63" 
+                          className="focus:border-primary border-2 h-11" 
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          disabled={submitting}
+                        />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label>Desired Position</Label>
-                      <Select>
-                        <SelectTrigger className="focus:border-primary border-2">
-                          <SelectValue placeholder="Select a job" />
+                      <Select value={position} onValueChange={(val) => setPosition(val)} disabled={submitting}>
+                        <SelectTrigger className="focus:border-primary border-2 h-11 bg-white">
+                          <SelectValue placeholder="Select a job position..." />
                         </SelectTrigger>
                         <SelectContent>
                           {jobs.map(j => (
@@ -137,17 +244,64 @@ export default function CareersPage() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="resume">Upload CV / Resume (PDF)</Label>
-                      <div className="border-2 border-dashed rounded-xl p-8 text-center bg-muted/30 hover:bg-muted/50 transition-all cursor-pointer group hover:border-primary/50">
+                      <label 
+                        htmlFor="resume-input"
+                        className="border-2 border-dashed rounded-xl p-8 text-center bg-muted/30 hover:bg-muted/50 transition-all cursor-pointer group hover:border-primary/50 block"
+                      >
                         <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2 group-hover:text-primary transition-colors" />
-                        <p className="text-xs text-muted-foreground group-hover:text-secondary">Click or drag and drop your file here</p>
-                        <input type="file" id="resume" className="hidden" accept=".pdf,.doc,.docx" />
-                      </div>
+                        <p className="text-xs text-muted-foreground group-hover:text-secondary font-medium">
+                          {resumeName ? `Selected: ${resumeName}` : "Click to select your resume (PDF/DOC)"}
+                        </p>
+                        <input 
+                          type="file" 
+                          id="resume-input" 
+                          className="hidden" 
+                          accept=".pdf,.doc,.docx" 
+                          onChange={handleFileChange}
+                          disabled={submitting}
+                        />
+                      </label>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="career-msg">Message (Optional)</Label>
-                      <Textarea id="career-msg" placeholder="Tell us about yourself..." className="focus:border-primary border-2 min-h-[100px]" />
+                      <Label htmlFor="career-msg">Cover Letter / Message (Optional)</Label>
+                      <Textarea 
+                        id="career-msg" 
+                        placeholder="Tell us about yourself..." 
+                        className="focus:border-primary border-2 min-h-[100px]" 
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        disabled={submitting}
+                      />
                     </div>
-                    <Button className="w-full h-12 font-bold uppercase tracking-widest mt-4 transition-transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20">Submit Application</Button>
+
+                    {/* Feedback Messages */}
+                    {errorMsg && (
+                      <div className="flex items-center gap-2 text-sm font-semibold text-destructive bg-destructive/10 p-4 rounded-md border border-destructive/20 animate-in fade-in zoom-in-95">
+                        <AlertCircle className="h-5 w-5" />
+                        {errorMsg}
+                      </div>
+                    )}
+                    {successMsg && (
+                      <div className="flex items-center gap-2 text-sm font-semibold text-emerald-600 bg-emerald-500/10 p-4 rounded-md border border-emerald-500/20 animate-in fade-in zoom-in-95">
+                        <CheckCircle className="h-5 w-5" />
+                        {successMsg}
+                      </div>
+                    )}
+
+                    <Button 
+                      type="submit"
+                      className="w-full h-12 font-bold uppercase tracking-widest mt-4 transition-transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20"
+                      disabled={submitting}
+                    >
+                      {submitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        "Submit Application"
+                      )}
+                    </Button>
                   </form>
                 </CardContent>
               </Card>

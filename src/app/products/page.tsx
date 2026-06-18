@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Badge } from "@/components/ui/badge"
 import { Search, Filter, Download, FileText, ShoppingCart, CheckCircle2, ShieldCheck, Truck, Recycle, Box, ChevronRight } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 const categories = [
   "All", 
@@ -229,8 +230,10 @@ function ProductsContent() {
                       <Button variant="outline" className="w-full gap-2 font-bold text-[10px] uppercase tracking-wider h-11 border-2 transition-all hover:bg-primary hover:text-white hover:border-primary">
                         <Download className="h-3.5 w-3.5" /> Brochure
                       </Button>
-                      <Button className="w-full gap-2 font-bold text-[10px] uppercase tracking-wider h-11 transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/10">
-                        <FileText className="h-3.5 w-3.5" /> Quote
+                      <Button className="w-full gap-2 font-bold text-[10px] uppercase tracking-wider h-11 transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/10" asChild>
+                        <Link href={`/contact?department=quotation&product=${encodeURIComponent(product.name)}`}>
+                          <FileText className="h-3.5 w-3.5" /> Quote
+                        </Link>
                       </Button>
                     </CardFooter>
                   </Card>
